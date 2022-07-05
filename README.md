@@ -75,9 +75,10 @@ php yii hello/create
 php yii hello/index
 php yii serve
 ~~~
-`php yii hello/create` create mysql table
-`php yii hello/index`  create test data to mysql
-`php yii serve`  run test serve
+- `php yii hello/create` create mysql table
+- `php yii hello/index`  create test data to mysql
+- `php yii serve`  run test serve
+
 You can then access the application through the following URL:
 
     http://127.0.0.1:8080
