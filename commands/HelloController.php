@@ -30,7 +30,6 @@ class HelloController extends Controller
     public function actionIndex($message = 'hello world')
     {
         echo $message . "\n";
-
         $feild = ['name', 'code', 't_status'];
         $insertData = [];
         $tmp_random = [];
@@ -51,7 +50,7 @@ class HelloController extends Controller
         }
 
 
-        $result = Yii::$app->db->createCommand()->batchInsert(Supplier::tableName(),$feild , $insertData )->execute();
+        $result = Yii::$app->db->createCommand()->batchInsert(Supplier::tableName() ,$feild , $insertData )->execute();
         if(!$result)
         {
             echo "fail".PHP_EOL;
@@ -60,6 +59,36 @@ class HelloController extends Controller
         }
 
         return ExitCode::OK;
+    }
+
+    /**
+     * [actionCreate description]
+     * @Author   ziming
+     * @DateTime 2022-07-05
+     * @return   [type]     [description]
+     */
+    public function actionCreate()
+    {
+        $sql = "CREATE TABLE `supplier111` (
+          `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+          `name` varchar(50) NOT NULL DEFAULT '',
+          `code` char(3) CHARACTER SET ascii DEFAULT NULL,
+          `t_status` enum('ok','hold') CHARACTER SET ascii NOT NULL DEFAULT 'ok',
+          PRIMARY KEY (`id`),
+          UNIQUE KEY `uk_code` (`code`)
+        ) ENGINE=InnoDB AUTO_INCREMENT=3138 DEFAULT CHARSET=utf8mb4";
+
+
+        $result = Yii::$app->db->createCommand()->setSql($sql)->execute();
+        if(!$result)
+        {
+            echo "fail".PHP_EOL;
+        }else{
+            echo "success".PHP_EOL;
+        }
+
+        return ExitCode::OK;
+
     }
 
     function random($length, $numeric = false)
